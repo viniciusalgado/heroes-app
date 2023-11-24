@@ -1,50 +1,62 @@
 import React from 'react'
 import HeroCarousel from '../HeroCarousel';
 import SupermanImg from '../../assets/1-a-bomb.jpg'
+import VsImage from '../../assets/vs-41942.png'
+import { FlexContainerButton, FlexContainerSpinners, PageBackground, VersusContainer, VersusImage } from './styles';
+import ImageButton from '../ImageButton';
 
 const BattlePage = () => {
   const heroes = [
     {
-      name: 'Superman',
+      name: 'Iron Man',
       image: SupermanImg,
       id: 0,
     },
     {
-      name: 'Superman',
+      name: 'Captain America',
       image: SupermanImg,
       id: 1,
     },
     {
-      name: 'Superman',
+      name: 'Thor',
       image: SupermanImg,
       id: 2,
     },
     {
-      name: 'Superman',
+      name: 'Hulk',
       image: SupermanImg,
       id: 3,
     },
     {
-      name: 'Superman',
+      name: 'Black Widow',
       image: SupermanImg,
       id: 4,
     },
     {
-      name: 'Superman',
+      name: 'Hawkeye',
       image: SupermanImg,
       id: 5,
     },
     {
-      name: 'Superman',
+      name: 'Spider-Man',
       image: SupermanImg,
       id: 6,
     }
   ];
-
+  
   return (
-    <div>
-      <HeroCarousel heroes={heroes}/>
-    </div>
+    <PageBackground>
+      <FlexContainerSpinners>
+        <HeroCarousel heroes={heroes}/>
+        <VersusContainer> 
+          <VersusImage src={VsImage} alt='Versus'/>
+        </VersusContainer>
+        <HeroCarousel heroes={heroes}/>
+      </FlexContainerSpinners>
+      <FlexContainerButton>
+        <ImageButton />
+      </FlexContainerButton>
+    </PageBackground>
   );
 };
 
