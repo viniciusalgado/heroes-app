@@ -19,7 +19,8 @@ export const SpinningContainer = styled('div')({
   height: '23rem',
   perspective: '300px',
   transformStyle: 'preserve-3d',
-  alignItems: 'center'
+  alignItems: 'center',
+  margin: '5px'
 });
 
 export const CarouselItem = styled('div')(({ active, index }) => {

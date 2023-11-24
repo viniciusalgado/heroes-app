@@ -11,12 +11,14 @@ export const HeroCardContainer = styled('div')(({ theme, size }) => ({
   transformStyle: 'preserve-3d'
 }));
 
-export const HeroImage = styled('img')(({ size }) => ({
+export const HeroImage = styled('img')(({ size, disabled }) => ({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
   borderRadius: size === 'big' ? '8px' : '0.1px',
+  filter: disabled ? 'brightness(20%)' : 'brightness(100%)'
 }));
+
 
 export const HeroName = styled('div')({
   position: 'absolute',

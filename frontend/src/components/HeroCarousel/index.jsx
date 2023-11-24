@@ -21,8 +21,6 @@ const HeroCarousel = ({ heroes }) => {
   useEffect(() => {
     const carouselEl = carouselRef.current;
     const handleScroll = (event) => {
-      console.log('trigger')
-      console.log({event})
       const delta = Math.sign(event.deltaY);
       setActive(prevActive => {
         let newActive = prevActive + delta;
@@ -63,11 +61,10 @@ const HeroCarousel = ({ heroes }) => {
 };
 
 HeroCarousel.propTypes = {
-  hero: PropTypes.shape({
+  heroes: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
-  size: PropTypes.string.isRequired
+    image: PropTypes.shape({ url: PropTypes.string.isRequired})
+  })).isRequired
 };
 
 export default HeroCarousel
