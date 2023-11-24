@@ -7,6 +7,10 @@ import { FlexContainerButton, FlexContainerSpinners, VersusContainer, VersusImag
 
 import { heroes } from '../../mock/heroesMock'
 const BattlePage = () => {
+
+  const handleFight = () => {
+
+  }
   
   return (
     <PageBackground>
@@ -18,7 +22,7 @@ const BattlePage = () => {
         <HeroCarousel heroes={heroes}/>
       </FlexContainerSpinners>
       <FlexContainerButton>
-        <ImageButton />
+        <ImageButton onClick={handleFight}/>
       </FlexContainerButton>
     </PageBackground>
   );
