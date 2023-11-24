@@ -24,7 +24,7 @@ const OverviewPage = () => {
           ))}
         </Grid>
         <Grid item container md={4} padding='5px'>
-          <HeroDetailsCard hero={selectedHero}/>
+          <HeroDetailsCard hero={selectedHero} showText={true} />
         </Grid>
       </Grid>
     </PageBackground>

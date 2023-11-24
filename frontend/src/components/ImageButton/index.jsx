@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Fight from '../../assets/28608-6-fight.png'
+import Fight from '../../assets/fight-image.png'
 
 const ImageButton = ({ onClick }) => {
   return (

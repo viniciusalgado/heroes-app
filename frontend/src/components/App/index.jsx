@@ -6,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import MuiTheme from '../../theme/MuiTheme'
 import Navbar from '../NavBar';
 import { SelectedHeroContextProvider } from '../../context/heroOptionsContext';
+import { BattleHeroesContextProvider } from '../../context/battleHeroesContext';
 
 const App = () => {
   return (
@@ -14,8 +15,10 @@ const App = () => {
       <CssBaseline />
       <div id='app-main'>
         <SelectedHeroContextProvider>
-          <Navbar />
-          <RoutesWrapper/>
+          <BattleHeroesContextProvider>
+            <Navbar />
+            <RoutesWrapper/>
+          </BattleHeroesContextProvider>
         </SelectedHeroContextProvider>
       </div>
     </ThemeProvider>

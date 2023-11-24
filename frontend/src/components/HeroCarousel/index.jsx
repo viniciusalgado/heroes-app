@@ -5,17 +5,26 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SearchBar from '../SearchBar';
 import { CarouselContainer, CarouselItem, NavButtonLeft, NavButtonRight, SpinningContainer } from './styles';
+import { useBattleHeroesContext } from '../../context/battleHeroesContext';
 
 const MAX_VISIBILITY = 3;
 
-const HeroCarousel = ({ heroes }) => {
+const HeroCarousel = ({ heroes, heroPosition }) => {
+  const { setBattleHeroes } = useBattleHeroesContext()
   const [active, setActive] = useState(2);
   const count = heroes.length;
   const carouselRef = useRef(null);
 
   const handleSearch= (hero) => {
+    console.log({ hero })
+    const selectedHero = heroes.find(indexedHero => indexedHero.name === hero)
     const index = heroes.findIndex(indexedHero => indexedHero.name === hero)
     setActive(index)
+    console.log({ selectedHero })
+    setBattleHeroes((prev) => ({
+      ...prev,
+      [heroPosition]: selectedHero,
+    }))
   }
   
   useEffect(() => {

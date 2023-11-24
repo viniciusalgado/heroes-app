@@ -8,7 +8,7 @@ const HeroCard = ({ hero, size, handleHeroClick }) => {
   const arrayMatch = selectedHero ? hero.name === selectedHero.name : true
 
   return (
-    <HeroCardContainer size={size} onClick={() => handleHeroClick(hero)}>
+    <HeroCardContainer size={size} onClick={handleHeroClick ? () => handleHeroClick(hero) : ()=>{}}>
       <HeroImage src={hero.image.url} alt={hero.name} size={size} disabled={!arrayMatch}/>
       {size === 'big' ? <HeroName>{hero.name}</HeroName> : null}
     </HeroCardContainer>
