@@ -1,5 +1,4 @@
-import { Grid, Paper, styled } from '@mui/material';
-import backgroundImage from '../../assets/background-image.jpg';
+import { Grid, styled } from '@mui/material';
 
 export const FlexContainerSpinners = styled(Grid)({
   display: 'flex',
@@ -24,14 +23,4 @@ export const VersusContainer = styled('div')({
 export const VersusImage = styled('img')({
   width: '70%',
   height: 'auto',
-});
-
-export const PageBackground = styled(Paper)({
-  backgroundImage: `url(${backgroundImage})`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  width: '100%',
-  height: '100%',
-  position: 'relative',
 });

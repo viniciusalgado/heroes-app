@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HeroCardContainer, HeroImage, HeroName } from './styles';
 
-const HeroCard = ({ hero }) => {
+const HeroCard = ({ hero, size, handleHeroClick }) => {
   return (
-    <HeroCardContainer>
-      <HeroImage src={hero.image} alt={hero.name} />
-      <HeroName>{hero.name}</HeroName>
+    <HeroCardContainer size={size} onClick={() => handleHeroClick(hero)}>
+      <HeroImage src={hero.image.url} alt={hero.name} size={size}/>
+      {size === 'big' ? <HeroName>{hero.name}</HeroName> : null}
     </HeroCardContainer>
   );
 };
@@ -16,6 +16,7 @@ HeroCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
+  size: PropTypes.string.isRequired
 };
 
 export default HeroCard;

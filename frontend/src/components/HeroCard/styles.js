@@ -1,27 +1,22 @@
 import { styled } from '@mui/system';
 
-export const HeroCardContainer = styled('div')(({ theme }) => ({
-  borderRadius: '8px',
+export const HeroCardContainer = styled('div')(({ theme, size }) => ({
+  borderRadius: size === 'big' ? '8px' : '0.1px',
+  cursor: 'pointer',
   textAlign: 'center',
   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-  width: '23rem',
-  height: '23rem',
+  width: size === 'big' ? '23rem' : '5rem',
+  height: size === 'big' ? '23rem' : '10rem',
   perspective: '500px',
-  transformStyle: 'preserve-3d',
-  [theme.breakpoints.up('sm')]: {
-    height: '200',
-  },
-  [theme.breakpoints.up('md')]: {
-    height: '300px',
-  },
+  transformStyle: 'preserve-3d'
 }));
 
-export const HeroImage = styled('img')({
+export const HeroImage = styled('img')(({ size }) => ({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  borderRadius: '8px',
-});
+  borderRadius: size === 'big' ? '8px' : '0.1px',
+}));
 
 export const HeroName = styled('div')({
   position: 'absolute',

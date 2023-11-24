@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HeroCard from '../HeroCard';
+import PropTypes from 'prop-types';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SearchBar from '../SearchBar';
@@ -50,7 +51,7 @@ const HeroCarousel = ({ heroes }) => {
             index={i}
             maxVisibility={MAX_VISIBILITY}
           >
-            <HeroCard hero={hero} />
+            <HeroCard hero={hero} size='big'/>
           </CarouselItem>
         ))}
         {active < count - 1
@@ -59,6 +60,14 @@ const HeroCarousel = ({ heroes }) => {
       <SearchBar suggestions={heroes} onSearch={handleSearch}/>
     </CarouselContainer>
   );
+};
+
+HeroCarousel.propTypes = {
+  hero: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+  size: PropTypes.string.isRequired
 };
 
 export default HeroCarousel
