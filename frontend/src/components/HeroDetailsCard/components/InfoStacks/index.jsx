@@ -5,7 +5,7 @@ import { StatProgressBar, DetailsStack } from './styles';
 
 export default function InfoStacks({ spacing, dataObject }) {
   return (
-    <DetailsStack spacing={spacing} sx={{width: '100%'}}>
+    <DetailsStack spacing={spacing}>
       {Object.keys(dataObject).map(information => {
         if (dataObject[information] && dataObject[information] !== 'null' ) {
           if (isNaN(dataObject[information])) {
@@ -18,12 +18,12 @@ export default function InfoStacks({ spacing, dataObject }) {
   
           return (
             <>
-              <Typography key={information} variant='b1'>{
+              <Typography key={information + 'typography'} variant='b1'>{
                 `${FormatString(information)}:`
               }</Typography>
               {dataObject[information] !== 'null'
-                ? <StatProgressBar variant="determinate" value={dataObject[information]}/>
-                : <StatProgressBar variant="determinate" value={0}/>
+                ? <StatProgressBar key={information + 'bar'} variant="determinate" value={dataObject[information]}/>
+                : <StatProgressBar key={information + 'bar'} variant="determinate" value={0}/>
               }
             </>
           )
