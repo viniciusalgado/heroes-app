@@ -6,7 +6,7 @@ import HeroDetailsCard from '../HeroDetailsCard';
 import { PageBackground } from '../../styles/global';
 
 export default function OverviewPage() {
-  const [selectedHero, setSelectedHero] = useState(heroes[0])
+  const [selectedHero, setSelectedHero] = useState()
 
   const handleHeroClick = (hero) => {
     console.log({hero})
@@ -18,7 +18,7 @@ export default function OverviewPage() {
       <Grid container>
         <Grid item container md={8} padding='5px' spacing={1} flexWrap='wrap' alignContent='flex-start' justifyContent='flex-start'>
           {heroes.map((hero, i) => (
-            <Grid item>
+            <Grid item key={hero.id}>
               <HeroCard hero={hero} key={hero.id} size='small' handleHeroClick={handleHeroClick}/>
             </Grid>
           ))}

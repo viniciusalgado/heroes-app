@@ -14,7 +14,9 @@ const HeroCard = ({ hero, size, handleHeroClick }) => {
 HeroCard.propTypes = {
   hero: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image:  PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    })
   }).isRequired,
   size: PropTypes.string.isRequired
 };

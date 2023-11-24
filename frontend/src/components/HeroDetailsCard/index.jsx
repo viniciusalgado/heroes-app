@@ -5,9 +5,11 @@ import { HeroImage } from '../HeroCard/styles'
 import InfoStacks from './components/InfoStacks'
 
 export default function HeroDetailsCard({ hero }) {
+  if (!hero) 
   return (
     <DetailsPaper>
-      <Grid container padding='10px' flexDirection='column'>
+      {hero
+        && <Grid container padding='10px' flexDirection='column'>
         <Typography variant='h4'>{hero.name}</Typography>
         <Typography variant='h6'>{hero.biography['full-name']}</Typography>
         <Grid item container spacing={2}>
@@ -25,6 +27,7 @@ export default function HeroDetailsCard({ hero }) {
           <InfoStacks dataObject={hero.appearance} spacing={1} />
         </Grid>
       </Grid>
+      }
     </DetailsPaper>
   )
 }
