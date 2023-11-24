@@ -7,22 +7,28 @@ export default function InfoStacks({ spacing, dataObject }) {
   return (
     <DetailsStack spacing={spacing} sx={{width: '100%'}}>
       {Object.keys(dataObject).map(information => {
-        if (isNaN(dataObject[information])) {
+        if (dataObject[information] && dataObject[information] !== 'null' ) {
+          if (isNaN(dataObject[information])) {
+            return (
+              <Typography key={information} variant='b1'>{
+                `${FormatString(information)}: ${dataObject[information]}`
+                }</Typography>
+            )
+          }
+  
           return (
-            <Typography key={information} variant='b1'>{
-              `${FormatString(information)}: ${dataObject[information]}`
+            <>
+              <Typography key={information} variant='b1'>{
+                `${FormatString(information)}:`
               }</Typography>
+              {dataObject[information] !== 'null'
+                ? <StatProgressBar variant="determinate" value={dataObject[information]}/>
+                : <StatProgressBar variant="determinate" value={0}/>
+              }
+            </>
           )
         }
-
-        return (
-          <>
-            <Typography key={information} variant='b1'>{
-              `${FormatString(information)}:`
-            }</Typography>
-            <StatProgressBar variant="determinate" value={dataObject[information]}/>
-          </>
-        )
+        return null
       })}
     </DetailsStack>
   )

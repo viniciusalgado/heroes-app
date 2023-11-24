@@ -5,11 +5,10 @@ import { heroes } from '../../mock/heroesMock';
 import HeroDetailsCard from '../HeroDetailsCard';
 import { PageBackground } from '../../styles/global';
 
-export default function OverviewPage() {
+const OverviewPage = () => {
   const [selectedHero, setSelectedHero] = useState()
 
   const handleHeroClick = (hero) => {
-    console.log({hero})
     setSelectedHero(hero)
   }
 
@@ -30,3 +29,5 @@ export default function OverviewPage() {
     </PageBackground>
   )
 };
+
+export default OverviewPage;

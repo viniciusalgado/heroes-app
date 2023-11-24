@@ -21,8 +21,6 @@ const HeroCarousel = ({ heroes }) => {
   useEffect(() => {
     const carouselEl = carouselRef.current;
     const handleScroll = (event) => {
-      console.log('trigger')
-      console.log({event})
       const delta = Math.sign(event.deltaY);
       setActive(prevActive => {
         let newActive = prevActive + delta;

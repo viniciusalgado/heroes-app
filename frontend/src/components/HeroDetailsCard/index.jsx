@@ -5,7 +5,7 @@ import { HeroImage } from '../HeroCard/styles'
 import InfoStacks from './components/InfoStacks'
 
 export default function HeroDetailsCard({ hero }) {
-  if (!hero) 
+
   return (
     <DetailsPaper>
       {hero
