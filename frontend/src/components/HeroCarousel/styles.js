@@ -2,32 +2,41 @@
 import { styled, Button } from '@mui/material';
 
 export const CarouselContainer = styled('div')({
-  width: '100vw',
-  height: '100vh',
+  width: '100%',
+  height: '100%',
   display: 'flex',
   alignItems: 'center',
+  flexDirection: 'column',
   justifyContent: 'center',
   overflow: 'hidden',
   fontFamily: 'Montserrat, sans-serif',
+  flexGrow: 1,
 });
 
 export const SpinningContainer = styled('div')({
   position: 'relative',
   width: '23rem',
   height: '23rem',
-  perspective: '500px',
+  perspective: '300px',
   transformStyle: 'preserve-3d',
-  // Add more styles as needed
+  alignItems: 'center'
 });
 
-export const CarouselItem = styled('div')({
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  transform: 'rotateY(calc(var(--offset) * 50deg)) scaleY(calc(1 + var(--abs-offset) * -0.4)) translateZ(calc(var(--abs-offset) * -30rem)) translateX(calc(var(--direction) * -5rem))',
-  filter: 'blur(calc(var(--abs-offset) * 1rem))',
-  transition: 'all 0.3s ease-out',
-  // Add more styles as needed
+export const CarouselItem = styled('div')(({ active, index }) => {
+  const isActive = index === active ? 1 : 0;
+  const absOffset = Math.abs(active - index) / 3;
+
+  return {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    transform: `rotateY(${(active - index) / 3 * 50}deg) scaleY(${1 + Math.abs(active - index) / 3 * -0.4}) translateZ(${Math.abs(active - index) / 3 * -30}rem) translateX(${Math.sign(active - index) * -5}rem)`,
+    transition: 'all 0.3s ease-out',
+    display: 'flex',
+    alignItems: 'center',
+    filter: `blur(${absOffset * 1}rem)`,
+    pointerEvents: isActive ? 'auto' : 'none',  
+  };
 });
 
 export const NavButtonLeft = styled(Button)({

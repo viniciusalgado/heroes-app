@@ -1,7 +1,6 @@
 import { styled } from '@mui/system';
 
 export const HeroCardContainer = styled('div')(({ theme }) => ({
-  border: '1px solid #ddd',
   borderRadius: '8px',
   textAlign: 'center',
   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
