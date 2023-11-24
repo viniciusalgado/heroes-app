@@ -5,7 +5,7 @@ import { StatProgressBar, DetailsStack } from './styles';
 
 export default function InfoStacks({ spacing, dataObject }) {
   return (
-    <DetailsStack spacing={spacing} sx={{width: '100%'}}>
+    <DetailsStack spacing={spacing}>
       {Object.keys(dataObject).map(information => {
         if (dataObject[information] && dataObject[information] !== 'null' ) {
           if (isNaN(dataObject[information])) {

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Fight from '../../assets/fight-image.png'
+import { Button } from '@mui/material';
+import { FightImage } from './styles'
 
 const ImageButton = ({ onClick }) => {
   return (
-    <button onClick={onClick} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer' }}>
-      <img src={Fight} alt='Fight' style={{ width: '50%', height: 'auto' }} />
-    </button>
+    <Button onClick={onClick}>
+      <FightImage src={Fight} alt='Fight' />
+    </Button>
   );
 };
 
