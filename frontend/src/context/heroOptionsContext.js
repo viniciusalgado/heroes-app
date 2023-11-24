@@ -1,13 +1,13 @@
 import { createContext, useContext, useMemo, useState } from 'react'
 
 const context = createContext({})
-const useHeroOptionsContext = () => useContext(context)
+const useSelectedHeroContext = () => useContext(context)
 
-const HeroOptionsContextProvider = ({ children }) => {
-  const [heroOptions, setHeroOptions] = useState([])
-  const value = useMemo(() => ({ heroOptions, setHeroOptions }), [heroOptions])
+const SelectedHeroContextProvider = ({ children }) => {
+  const [selectedHero, setSelectedHero] = useState('')
+  const value = useMemo(() => ({ selectedHero, setSelectedHero }), [selectedHero])
 
   return <context.Provider value={value}>{children}</context.Provider>
 }
 
-export { HeroOptionsContextProvider, useHeroOptionsContext }
+export { SelectedHeroContextProvider, useSelectedHeroContext }

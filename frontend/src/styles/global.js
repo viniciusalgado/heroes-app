@@ -9,4 +9,5 @@ export const PageBackground = styled(Paper)(() => ({
   height: '100%',
   minHeight: '100vh',
   position: 'relative',
+  borderRadius: 0,
 }));

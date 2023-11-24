@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@mui/material';
 import HeroCard from '../HeroCard';
 import { heroes } from '../../mock/heroesMock';
 import HeroDetailsCard from '../HeroDetailsCard';
+import { useSelectedHeroContext } from '../../context/heroOptionsContext';
 import { PageBackground } from '../../styles/global';
 
 const OverviewPage = () => {
-  const [selectedHero, setSelectedHero] = useState()
+  const { selectedHero, setSelectedHero } = useSelectedHeroContext()
 
   const handleHeroClick = (hero) => {
     setSelectedHero(hero)
