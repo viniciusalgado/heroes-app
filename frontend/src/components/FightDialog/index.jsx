@@ -9,9 +9,9 @@ import { WinnerStampImage } from './styles'
 const FightDialog = ({ open, onClose }) => {
   const { battleHeroes } = useBattleHeroesContext()
   const winner = () => {
-    if (battleHeroes.firstHero.powerstats.total > battleHeroes.secondHero.powerstats.total) {
-      return 'left'
-    }
+    // if (battleHeroes.firstHero.powerstats.total > battleHeroes.secondHero.powerstats.total) {
+    //   return 'left'
+    // }
     return 'right'
   }
 

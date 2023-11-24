@@ -11,7 +11,7 @@ export const FlexContainerButton = styled(Grid)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '30vh',
+  height: '20vh',
 });
 
 export const VersusContainer = styled('div')({

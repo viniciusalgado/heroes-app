@@ -18,12 +18,12 @@ export default function InfoStacks({ spacing, dataObject }) {
   
           return (
             <>
-              <Typography key={information} variant='b1'>{
+              <Typography key={information + 'typography'} variant='b1'>{
                 `${FormatString(information)}:`
               }</Typography>
               {dataObject[information] !== 'null'
-                ? <StatProgressBar variant="determinate" value={dataObject[information]}/>
-                : <StatProgressBar variant="determinate" value={0}/>
+                ? <StatProgressBar key={information + 'bar'} variant="determinate" value={dataObject[information]}/>
+                : <StatProgressBar key={information + 'bar'} variant="determinate" value={0}/>
               }
             </>
           )

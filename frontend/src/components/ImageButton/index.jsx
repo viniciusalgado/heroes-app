@@ -5,7 +5,7 @@ import Fight from '../../assets/fight-image.png'
 const ImageButton = ({ onClick }) => {
   return (
     <button onClick={onClick} style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer' }}>
-      <img src={Fight} alt='Fight' style={{ width: '80%', height: 'auto' }} />
+      <img src={Fight} alt='Fight' style={{ width: '50%', height: 'auto' }} />
     </button>
   );
 };

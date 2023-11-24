@@ -16,11 +16,10 @@ const HeroCarousel = ({ heroes, heroPosition }) => {
   const carouselRef = useRef(null);
 
   const handleSearch= (hero) => {
-    console.log({ hero })
     const selectedHero = heroes.find(indexedHero => indexedHero.name === hero)
     const index = heroes.findIndex(indexedHero => indexedHero.name === hero)
     setActive(index)
-    console.log({ selectedHero })
+
     setBattleHeroes((prev) => ({
       ...prev,
       [heroPosition]: selectedHero,
@@ -45,6 +44,14 @@ const HeroCarousel = ({ heroes, heroPosition }) => {
       };
     }
   }, [count]);
+
+  useEffect(() => {
+    setBattleHeroes((prev) => ({
+      ...prev,
+      [heroPosition]: heroes[active],
+    }))
+  }, [active, heroPosition, heroes, setBattleHeroes])
+  
 
   return (
     <CarouselContainer ref={carouselRef}>
