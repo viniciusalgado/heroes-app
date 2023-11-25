@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState } from 'react'
 
-const context = createContext({})
-const useBattleHeroesContext = () => useContext(context)
+const BattleContext = createContext({})
+const useBattleHeroesContext = () => useContext(BattleContext)
 
 const BattleHeroesContextProvider = ({ children }) => {
   const [battleHeroes, setBattleHeroes] = useState({
@@ -10,7 +10,7 @@ const BattleHeroesContextProvider = ({ children }) => {
   })
   const value = useMemo(() => ({ battleHeroes, setBattleHeroes }), [battleHeroes])
 
-  return <context.Provider value={value}>{children}</context.Provider>
+  return <BattleContext.Provider value={value}>{children}</BattleContext.Provider>
 }
 
 export { BattleHeroesContextProvider, useBattleHeroesContext }

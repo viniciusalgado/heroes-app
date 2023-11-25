@@ -1,23 +1,35 @@
-import React from 'react';
-import { Grid } from '@mui/material';
-import HeroCard from '../HeroCard';
-import { heroes } from '../../mock/heroesMock';
-import HeroDetailsCard from '../HeroDetailsCard';
-import { useSelectedHeroContext } from '../../context/heroOptionsContext';
-import { PageBackground } from '../../styles/global';
+import React, { useEffect } from 'react'
+import { Grid } from '@mui/material'
+import HeroCard from '../HeroCard'
+import HeroDetailsCard from '../HeroDetailsCard'
+import { useSelectedHeroContext } from '../../context/heroOptionsContext'
+import { useHeroesContext } from '../../context/heroesContext'
+import HeroesQueries from '../../services/heroesQueries'
+import { PageBackground } from '../../styles/global'
+import { useLoaderContext } from '../../context/loaderContext'
 
 const OverviewPage = () => {
+  const { heroes } = useHeroesContext()
   const { selectedHero, setSelectedHero } = useSelectedHeroContext()
+  const { setShowLoader } = useLoaderContext()
 
-  const handleHeroClick = (hero) => {
-    setSelectedHero(hero)
+  useEffect(() => {
+    setShowLoader(heroes.length === 0)
+  }, [heroes.length])
+  
+
+  const handleHeroClick = async (hero) => {
+    setShowLoader(true)
+    const auxHero = await HeroesQueries.getHero({ heroId: hero.id })
+    setShowLoader(false)
+    setSelectedHero(auxHero)
   }
 
   return (
     <PageBackground>
       <Grid container>
         <Grid item container md={8} padding='5px' spacing={1} flexWrap='wrap' alignContent='flex-start' justifyContent='flex-start'>
-          {heroes.map((hero, i) => (
+          {heroes.length && heroes.map((hero, i) => (
             <Grid item key={hero.id}>
               <HeroCard hero={hero} key={hero.id} size='small' handleHeroClick={handleHeroClick}/>
             </Grid>
@@ -29,6 +41,6 @@ const OverviewPage = () => {
       </Grid>
     </PageBackground>
   )
-};
+}
 
-export default OverviewPage;
+export default OverviewPage

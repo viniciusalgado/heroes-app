@@ -1,4 +1,4 @@
-import { styled } from '@mui/system';
+import { styled } from '@mui/system'
 
 export const HeroCardContainer = styled('div')(({ theme, size }) => ({
   borderRadius: size === 'big' ? '8px' : '0.1px',
@@ -9,7 +9,7 @@ export const HeroCardContainer = styled('div')(({ theme, size }) => ({
   height: size === 'big' ? '23rem' : '10rem',
   perspective: '500px',
   transformStyle: 'preserve-3d'
-}));
+}))
 
 export const HeroImage = styled('img')(({ size, disabled }) => ({
   width: '100%',
@@ -17,7 +17,7 @@ export const HeroImage = styled('img')(({ size, disabled }) => ({
   objectFit: 'cover',
   borderRadius: size === 'big' ? '8px' : '0.1px',
   filter: disabled ? 'brightness(20%)' : 'brightness(100%)'
-}));
+}))
 
 
 export const HeroName = styled('div')({
@@ -28,4 +28,4 @@ export const HeroName = styled('div')({
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
   padding: '5px 10px',
   borderRadius: '4px',
-});
+})

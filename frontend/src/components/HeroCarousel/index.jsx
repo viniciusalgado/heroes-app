@@ -1,92 +1,91 @@
-import React, { useEffect, useRef, useState } from 'react';
-import HeroCard from '../HeroCard';
-import PropTypes from 'prop-types';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import SearchBar from '../SearchBar';
-import { CarouselContainer, CarouselItem, NavButtonLeft, NavButtonRight, SpinningContainer } from './styles';
-import { useBattleHeroesContext } from '../../context/battleHeroesContext';
+import React, { useEffect, useRef, useState } from 'react'
+import HeroCard from '../HeroCard'
+import PropTypes from 'prop-types'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import SearchBar from '../SearchBar'
+import { CarouselContainer, CarouselItem, NavButtonLeft, NavButtonRight, SpinningContainer } from './styles'
+import { useBattleHeroesContext } from '../../context/battleHeroesContext'
+import { useHeroesContext } from '../../context/heroesContext'
 
-const MAX_VISIBILITY = 3;
+const MAX_VISIBILITY = 3
 
 const visibleFilter = ({ heroes, active }) => {
-  const visibleHeroes = heroes.filter(hero => {
-    return !!(hero.id < active + 2 && hero.id > active - 2);
-  })
-  console.log({heroes})
-  console.log({active})
-  console.log({visibleHeroes})
-  return visibleHeroes || []
+  if (heroes.length) {
+    const activeIndex = heroes.findIndex((hero) => hero.id === active)
+
+    const startIndex = Math.max(0, activeIndex - 1)
+    const endIndex = Math.min(heroes.length, activeIndex + 2)
+
+    const visibleHeroes = heroes.slice(startIndex, endIndex)
+    return visibleHeroes
+  }
+
+  return []
 }
 
-const HeroCarousel = ({ heroes, heroPosition }) => {
+
+const HeroCarousel = ({ heroPosition }) => {
   const { setBattleHeroes } = useBattleHeroesContext()
-  const [active, setActive] = useState(1);
+  const { heroes } = useHeroesContext()
+  const [active, setActive] = useState(heroes[0]?.id)
   const [visibleCards, setVisibleCards] = useState(visibleFilter({ heroes, active: 1}))
-  const count = heroes.length;
-  const carouselRef = useRef(null);
+  const count = heroes.length
+  const carouselRef = useRef(null)
 
   const handleSearch= (hero) => {
-    const selectedHero = heroes.find(indexedHero => indexedHero.name === hero)
-    setActive(selectedHero.id)
+    if (hero) {
+      setActive(hero.id)
+      setVisibleCards(visibleFilter({ heroes, active: hero.id }))
+    }
+  }
 
+  const handleLeftClick = () => {
+    const currentIndex = heroes.findIndex(hero => hero.id === active)
+    if (currentIndex > 0) {
+      const newActive = heroes[currentIndex - 1].id
+      setActive(newActive)
+      setVisibleCards(visibleFilter({ heroes, active: newActive }))
+    }
+  }
+
+  const handleRightClick = () => {
+    const currentIndex = heroes.findIndex(hero => hero.id === active)
+    if (currentIndex < count - 1) {
+      const newActive = heroes[currentIndex + 1].id
+      setActive(newActive)
+      setVisibleCards(visibleFilter({ heroes, active: newActive }))
+    }
+  }
+  
+  useEffect(() => {
+    const selectedHero = heroes.find(indexedHero => indexedHero.id === active)
     setBattleHeroes((prev) => ({
       ...prev,
       [heroPosition]: selectedHero,
     }))
-  }
 
-  const handleLeftClick = () => {
-    setActive(i => {
-      if (i > 1) {
-        let newActive = i - 1
-        setVisibleCards(visibleFilter({ heroes, active: newActive}))
-        return newActive
-      }
-      return i
-    })
-  }
-
-  const handleRightClick = () => {
-    setActive(i => {
-      if (i < count) {
-        let newActive = i + 1
-        setVisibleCards(visibleFilter({ heroes, active: newActive}))
-        return newActive
-      }
-      return i
-    })
-  }
-  
-  useEffect(() => {
-    const carouselEl = carouselRef.current;
+    const carouselEl = carouselRef.current
     const handleScroll = (event) => {
-      const delta = Math.sign(event.deltaY);
-      setActive(prevActive => {
-        let newActive = prevActive + delta;
-        newActive = Math.max(1, Math.min(newActive, count));
-        setVisibleCards(visibleFilter({ heroes, active: newActive}))
-        return newActive;
-      });
-    };
+      const delta = Math.sign(event.deltaY)
+      const currentIndex = heroes.findIndex(hero => hero.id === active)
+      let newIndex = currentIndex + delta
+      newIndex = Math.max(0, Math.min(newIndex, count - 1))
+      const newActive = heroes[newIndex].id
+
+      setActive(newActive)
+      setVisibleCards(visibleFilter({ heroes, active: newActive }))
+    }
     if (carouselEl) {
-      carouselEl.addEventListener('wheel', handleScroll);
+      carouselEl.addEventListener('wheel', handleScroll)
   
       return () => {
-        carouselEl.removeEventListener('wheel', handleScroll);
-      };
+        carouselEl.removeEventListener('wheel', handleScroll)
+      }
     }
-  }, [heroes, count, setVisibleCards]);
-
-  useEffect(() => {
-    setBattleHeroes((prev) => ({
-      ...prev,
-      [heroPosition]: heroes[active],
-    }))
-  }, [active, heroPosition, heroes, setBattleHeroes])
+  }, [active])
   
-
-  return (
+  return (  
     <CarouselContainer ref={carouselRef}>
       <SpinningContainer>
         {active > 1
@@ -106,14 +105,11 @@ const HeroCarousel = ({ heroes, heroPosition }) => {
       </SpinningContainer>
       <SearchBar suggestions={heroes} onSearch={handleSearch}/>
     </CarouselContainer>
-  );
-};
+  )
+}
 
 HeroCarousel.propTypes = {
-  heroes: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.shape({ url: PropTypes.string.isRequired})
-  })).isRequired
-};
+  heroPosition: PropTypes.string.isRequired,
+}
 
 export default HeroCarousel

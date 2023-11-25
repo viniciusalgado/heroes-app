@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles'
 
 const MuiTheme = createTheme({
   palette: {
@@ -18,6 +18,6 @@ const MuiTheme = createTheme({
       fontSize: '1.4rem'
     }
   },
-});
+})
 
-export default MuiTheme;
+export default MuiTheme

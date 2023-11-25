@@ -1,10 +1,10 @@
 
-import { Autocomplete, styled } from '@mui/material';
+import { Autocomplete, styled } from '@mui/material'
 
 export const HeroSearch = styled(Autocomplete)({
-  width: '70%',
+  width: '300px',
   '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
     borderColor: 'red',
   },
-  backgroundColor: 'rgba(255, 255, 255, 0.8)'
-});
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+})
