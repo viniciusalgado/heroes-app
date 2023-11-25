@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelectedHeroContext } from '../../context/heroOptionsContext';
-import { HeroCardContainer, HeroImage, HeroName } from './styles';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useSelectedHeroContext } from '../../context/heroOptionsContext'
+import { HeroCardContainer, HeroImage, HeroName } from './styles'
 
 const HeroCard = ({ hero, size, handleHeroClick }) => {
   const { selectedHero } = useSelectedHeroContext()
@@ -13,8 +13,8 @@ const HeroCard = ({ hero, size, handleHeroClick }) => {
       <HeroImage src={imageSource} alt={hero.name} size={size} disabled={!arrayMatch}/>
       {size === 'big' ? <HeroName>{hero.name}</HeroName> : null}
     </HeroCardContainer>
-  );
-};
+  )
+}
 
 HeroCard.propTypes = {
   hero: PropTypes.shape({
@@ -25,7 +25,7 @@ HeroCard.propTypes = {
     })
   }).isRequired,
   size: PropTypes.string.isRequired,
-  handleHeroClick: PropTypes.func.isRequired
-};
+  handleHeroClick: PropTypes.func
+}
 
-export default HeroCard;
+export default HeroCard

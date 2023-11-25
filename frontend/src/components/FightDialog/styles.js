@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled } from '@mui/material'
 
 export const WinnerStampImage = styled('img')(({ winner }) =>({
   width: '20%',
@@ -7,4 +7,4 @@ export const WinnerStampImage = styled('img')(({ winner }) =>({
   top: '70%',
   right: winner === 'right' ? '32%' : 'auto',
   left: winner === 'left' ? '0%' : 'auto',
-}));
+}))

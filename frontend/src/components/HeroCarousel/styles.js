@@ -1,5 +1,5 @@
 
-import { styled, Button } from '@mui/material';
+import { styled, Button } from '@mui/material'
 
 export const CarouselContainer = styled('div')({
   width: '100%',
@@ -11,7 +11,7 @@ export const CarouselContainer = styled('div')({
   overflow: 'hidden',
   fontFamily: 'Montserrat, sans-serif',
   flexGrow: 1,
-});
+})
 
 export const SpinningContainer = styled('div')({
   position: 'relative',
@@ -21,11 +21,11 @@ export const SpinningContainer = styled('div')({
   transformStyle: 'preserve-3d',
   alignItems: 'center',
   margin: '5px'
-});
+})
 
 export const CarouselItem = styled('div')(({ active, index }) => {
-  const isActive = index === active ? 1 : 0;
-  const absOffset = Math.abs(active - index) / 3;
+  const isActive = index === active ? 1 : 0
+  const absOffset = Math.abs(active - index) / 3
 
   return {
     position: 'absolute',
@@ -37,8 +37,8 @@ export const CarouselItem = styled('div')(({ active, index }) => {
     alignItems: 'center',
     filter: `blur(${absOffset * 1}rem)`,
     pointerEvents: isActive ? 'auto' : 'none',  
-  };
-});
+  }
+})
 
 export const NavButtonLeft = styled(Button)({
   color: 'white',
@@ -59,7 +59,7 @@ export const NavButtonLeft = styled(Button)({
     right: 0,
     transform: 'translateX(100%) translatey(-50%)',
   },
-});
+})
 
 export const NavButtonRight = styled(Button)({
   color: 'white',
@@ -76,4 +76,4 @@ export const NavButtonRight = styled(Button)({
   border: 'unset',
   right: 0,
   transform: 'translateX(100%) translatey(-100%)',
-});
+})

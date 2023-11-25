@@ -1,9 +1,9 @@
 
-import { LinearProgress, Stack, styled } from '@mui/material';
+import { LinearProgress, Stack, styled } from '@mui/material'
 
 export const DetailsStack = styled(Stack)({
   width: '100%'
-});
+})
 
 export const StatProgressBar = styled(LinearProgress)(({ theme, value }) => ({
   height: 5,
@@ -14,4 +14,4 @@ export const StatProgressBar = styled(LinearProgress)(({ theme, value }) => ({
   '& .MuiLinearProgress-bar1Determinate': {
     backgroundColor: value > 50 ? theme.palette.success.main : theme.palette.error.main,
   },
-}));
+}))

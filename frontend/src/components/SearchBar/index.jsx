@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { InputAdornment, TextField} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState } from 'react'
+import { InputAdornment, TextField} from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 import { HeroSearch } from './styles'
 
 const SearchBar = ({ suggestions, onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(suggestions[0])
 
   const handleSearchChange = (event, newValue) => {
     onSearch(newValue)
-    setSearchQuery(newValue);
-  };
+    setSearchQuery(newValue)
+  }
 
   return (
     <HeroSearch
       freeSolo
-      options={suggestions.map((option) => option.name)}
+      options={suggestions}
+      getOptionLabel={(option) => option.name}
       value={searchQuery}
       onChange={handleSearchChange}
       renderInput={(params) => (
@@ -35,8 +36,13 @@ const SearchBar = ({ suggestions, onSearch }) => {
           }}
         />
       )}
+      renderOption={(props, option) => (
+        <li {...props} key={option.id}>
+          {option.name}
+        </li>
+      )}
     />
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

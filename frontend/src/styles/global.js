@@ -1,4 +1,4 @@
-import { Paper, styled } from '@mui/material';
+import { Paper, styled } from '@mui/material'
 
 export const PageBackground = styled(Paper)(() => ({
   backgroundColor: 'rgba( 135, 35, 35, 1)',
@@ -9,4 +9,4 @@ export const PageBackground = styled(Paper)(() => ({
   height: '100%',
   position: 'relative',
   borderRadius: 0,
-}));
+}))
