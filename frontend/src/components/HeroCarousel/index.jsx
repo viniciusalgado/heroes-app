@@ -9,21 +9,53 @@ import { useBattleHeroesContext } from '../../context/battleHeroesContext';
 
 const MAX_VISIBILITY = 3;
 
+const visibleFilter = ({ heroes, active }) => {
+  const visibleHeroes = heroes.filter(hero => {
+    return !!(hero.id < active + 2 && hero.id > active - 2);
+  })
+  console.log({heroes})
+  console.log({active})
+  console.log({visibleHeroes})
+  return visibleHeroes || []
+}
+
 const HeroCarousel = ({ heroes, heroPosition }) => {
   const { setBattleHeroes } = useBattleHeroesContext()
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(1);
+  const [visibleCards, setVisibleCards] = useState(visibleFilter({ heroes, active: 1}))
   const count = heroes.length;
   const carouselRef = useRef(null);
 
   const handleSearch= (hero) => {
     const selectedHero = heroes.find(indexedHero => indexedHero.name === hero)
-    const index = heroes.findIndex(indexedHero => indexedHero.name === hero)
-    setActive(index)
+    setActive(selectedHero.id)
 
     setBattleHeroes((prev) => ({
       ...prev,
       [heroPosition]: selectedHero,
     }))
+  }
+
+  const handleLeftClick = () => {
+    setActive(i => {
+      if (i > 1) {
+        let newActive = i - 1
+        setVisibleCards(visibleFilter({ heroes, active: newActive}))
+        return newActive
+      }
+      return i
+    })
+  }
+
+  const handleRightClick = () => {
+    setActive(i => {
+      if (i < count) {
+        let newActive = i + 1
+        setVisibleCards(visibleFilter({ heroes, active: newActive}))
+        return newActive
+      }
+      return i
+    })
   }
   
   useEffect(() => {
@@ -32,7 +64,8 @@ const HeroCarousel = ({ heroes, heroPosition }) => {
       const delta = Math.sign(event.deltaY);
       setActive(prevActive => {
         let newActive = prevActive + delta;
-        newActive = Math.max(0, Math.min(newActive, count - 1));
+        newActive = Math.max(1, Math.min(newActive, count));
+        setVisibleCards(visibleFilter({ heroes, active: newActive}))
         return newActive;
       });
     };
@@ -43,7 +76,7 @@ const HeroCarousel = ({ heroes, heroPosition }) => {
         carouselEl.removeEventListener('wheel', handleScroll);
       };
     }
-  }, [count]);
+  }, [heroes, count, setVisibleCards]);
 
   useEffect(() => {
     setBattleHeroes((prev) => ({
@@ -56,20 +89,20 @@ const HeroCarousel = ({ heroes, heroPosition }) => {
   return (
     <CarouselContainer ref={carouselRef}>
       <SpinningContainer>
-        {active > 0
-          &&  <NavButtonLeft onClick={() => setActive(i => i - 1)}><ArrowBackIosIcon/></NavButtonLeft>}
-        {heroes.map((hero, i) => (
+        {active > 1
+          &&  <NavButtonLeft onClick={handleLeftClick}><ArrowBackIosIcon/></NavButtonLeft>}
+        {visibleCards.map((hero) => (
           <CarouselItem 
             key={hero.id}
             active={active}
-            index={i}
+            index={hero.id}
             maxVisibility={MAX_VISIBILITY}
           >
             <HeroCard hero={hero} size='big'/>
           </CarouselItem>
         ))}
-        {active < count - 1
-          && <NavButtonRight onClick={() => setActive(i => i + 1)}><ArrowForwardIosIcon/></NavButtonRight>}
+        {active < count
+          && <NavButtonRight onClick={handleRightClick}><ArrowForwardIosIcon/></NavButtonRight>}
       </SpinningContainer>
       <SearchBar suggestions={heroes} onSearch={handleSearch}/>
     </CarouselContainer>

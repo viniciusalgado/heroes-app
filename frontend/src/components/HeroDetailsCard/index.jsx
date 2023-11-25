@@ -17,7 +17,7 @@ export default function HeroDetailsCard({ hero, showText }) {
         <Typography variant='h6'>{hero.biography['full-name']}</Typography>
         <Grid item container spacing={2}>
           <Grid item md={5}>
-            <HeroImage src={hero.image.url} alt={hero.name} />
+            <HeroImage src={hero.images.md} alt={hero.name} />
           </Grid>
           <Grid item md={7} container alignContent='center' justifyContent='flex-start'>
             <InfoStacks dataObject={hero.powerstats} spacing={1} />

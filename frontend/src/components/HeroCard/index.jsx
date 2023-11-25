@@ -6,10 +6,11 @@ import { HeroCardContainer, HeroImage, HeroName } from './styles';
 const HeroCard = ({ hero, size, handleHeroClick }) => {
   const { selectedHero } = useSelectedHeroContext()
   const arrayMatch = selectedHero ? hero.name === selectedHero.name : true
+  const imageSource = size === 'big' ? hero.images.md : hero.images.sm
 
   return (
     <HeroCardContainer size={size} onClick={handleHeroClick ? () => handleHeroClick(hero) : ()=>{}}>
-      <HeroImage src={hero.image.url} alt={hero.name} size={size} disabled={!arrayMatch}/>
+      <HeroImage src={imageSource} alt={hero.name} size={size} disabled={!arrayMatch}/>
       {size === 'big' ? <HeroName>{hero.name}</HeroName> : null}
     </HeroCardContainer>
   );
