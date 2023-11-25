@@ -13,12 +13,10 @@ exports.fetchAllHeroes = async () => {
 };
 
 exports.fetchSpecificHero = async ({ heroId }) => {
-    console.log(heroId)
     const response = await axios.get(process.env.API_URL);
     const completeHeroesInfo = response.data;
-    console.log(completeHeroesInfo)
+
     const hero = completeHeroesInfo.filter((hero) => hero.id === heroId)
-    console.log(hero)
 
     return hero;
 };
