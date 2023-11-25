@@ -19,11 +19,13 @@ const HeroCard = ({ hero, size, handleHeroClick }) => {
 HeroCard.propTypes = {
   hero: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image:  PropTypes.shape({
-      url: PropTypes.string.isRequired,
+    images:  PropTypes.shape({
+      md: PropTypes.string.isRequired,
+      sm: PropTypes.string.isRequired,
     })
   }).isRequired,
-  size: PropTypes.string.isRequired
+  size: PropTypes.string.isRequired,
+  handleHeroClick: PropTypes.func.isRequired
 };
 
 export default HeroCard;

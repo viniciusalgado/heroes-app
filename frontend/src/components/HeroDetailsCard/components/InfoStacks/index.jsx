@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Typography } from '@mui/material'
 import FormatString from '../../../../utils/FormatString';
 import { StatProgressBar, DetailsStack } from './styles';
 
-export default function InfoStacks({ spacing, dataObject }) {
+const InfoStacks = ({ spacing, dataObject }) => {
   return (
     <DetailsStack spacing={spacing}>
       {Object.keys(dataObject).map(information => {
@@ -33,3 +34,12 @@ export default function InfoStacks({ spacing, dataObject }) {
     </DetailsStack>
   )
 }
+
+InfoStacks.propTypes = {
+  dataObject: PropTypes.shape({
+    information: PropTypes.number.isRequired,
+  }).isRequired,
+  spacing: PropTypes.number.isRequired
+};
+
+export default InfoStacks
