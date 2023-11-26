@@ -25,6 +25,8 @@ const OverviewPage = () => {
     setSelectedHero(auxHero)
   }
 
+  const clearHero = () => setSelectedHero('')
+
   return (
     <PageBackground>
       <Grid container>
@@ -36,7 +38,7 @@ const OverviewPage = () => {
           ))}
         </Grid>
         <Grid item container md={4} padding='5px'>
-          <HeroDetailsCard hero={selectedHero} showText={true} />
+          <HeroDetailsCard hero={selectedHero} showText={true} clearHero={clearHero}/>
         </Grid>
       </Grid>
     </PageBackground>
